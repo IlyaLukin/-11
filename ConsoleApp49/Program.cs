@@ -12,43 +12,46 @@ namespace ConsoleApp49
         {
             
 
-            const int Size = 10;
-            string[] buf = new string[Size] {"guhoehtyru",
-                                             "llxoeretsy",
-                                             "bnce.trhuz",
-                                             "utp!wjyrst",
-                                             "nqwmpjgtsr",
-                                             "guhoehtyru",
-                                             "llxoeretsy",
-                                             "bnce.trhuz",
-                                             "utp!wjyrst",
-                                             "nqwmpjgtsr",};
-            int[,] grid = new int[Size, Size]{{0, 0, 1, 0, 1, 0, 1, 0, 0, 1},
-                                              {1, 1, 0, 1, 0, 1, 0, 0, 1, 1},
-                                              {0, 0, 0, 0, 0, 1, 0, 1, 1, 1},
-                                              {0, 0, 0, 1, 0, 1, 1, 0, 0, 1},
-                                              {0, 0, 0, 0, 0, 1, 1, 1, 0, 0},
-                                              {0, 0, 1, 0, 1, 0, 1, 0, 0, 1},
-                                              {1, 1, 0, 1, 0, 1, 0, 0, 1, 1},
-                                              {0, 0, 0, 0, 0, 1, 0, 1, 1, 1},
-                                              {0, 0, 0, 1, 0, 1, 1, 0, 0, 1},
-                                              {0, 0, 0, 0, 0, 1, 1, 1, 0, 0}};
+         const int Size = 10;
+            string[] buf = new string[Size] {"АБВГДЕЖЗИК",
+                                             "АБВГДЕЖЗИК",
+                                             "АБВГДЕЖЗИК",
+                                             "АБВГДЕЖЗИК",
+                                             "КЛМНОПРСТУ",
+                                             "КЛМНОПРСТУ",
+                                             "КЛМНОПРСТУ",
+                                             "КЛМНОПРСТУ",
+                                             "КЛМНОПРСТУ",
+                                             "КЛМНОПРСТУ",};
+            int[,] grid = new int[Size, Size]{{1, 1, 0, 1, 1, 1, 0, 1, 1, 0},
+                                              {0, 1, 1, 1, 0, 1, 1, 1, 1, 1},
+                                              {1, 1, 0, 1, 1, 0, 1, 1, 1, 1},
+                                              {1, 0, 1, 1, 1, 1, 1, 1, 0, 1},
+                                              {0, 1, 1, 0, 1, 1, 0, 1, 1, 0},
+                                              {1, 1, 0, 1, 1, 0, 1, 1, 1, 1},
+                                              {1, 1, 1, 0, 1, 1, 1, 0, 1, 1},
+                                              {1, 0, 1, 1, 1, 1, 0, 1, 0, 1},
+                                              {0, 1, 1, 1, 0, 1, 1, 1, 0, 1},
+                                              {1, 1, 0, 1, 1, 1, 0, 1, 1, 1}};
+            Console.WriteLine("Ваша символьная матрица");
             // вывод зашифрованного сообщения
-            for (int i = 0; i < Size; i++)
+            for (int i = 0; i < buf.GetLength(0); i++)
             {
-                Console.WriteLine(buf[i]);
+                
+                Console.Write(buf[i].ToString()+ " ");
+                Console.WriteLine();
             }
             Console.WriteLine("");
 
-            // прямой обход решетки
-            Console.WriteLine("0:");
-            for (int i = 0; i < Size; i++)
-                for (int j = 0; j < Size; j++)
-                    if (grid[i, j] == 1)
-                    {
-                        Console.Write(buf[i][j]);
-                    }
+            Console.WriteLine("Ваша числовая матрица");
+            for (int i = 0; i < grid.GetLength(0); i++)
+            {
+                for (int j = 0; j < grid.GetLength(1); j++)
+                    Console.Write(grid[i, j].ToString() + " ");
+                Console.WriteLine();
+            }
             Console.WriteLine("");
+
             // поворот решетки на 90 градусов по часовой стрелке
             Console.WriteLine("90:");
             for (int i = 0; i < Size; i++)
@@ -66,16 +69,33 @@ namespace ConsoleApp49
                     {
                         Console.Write(buf[i][j]);
                     }
+          
             Console.WriteLine("");
-            // поворот решетки на 270 градусов по часовой стрелке
-            Console.WriteLine("270:");
+            Console.WriteLine("\nСимвольная матрица после нанесения на числовую решетку (Зашифрованная)");
+            int[,] Matrix = new int[Size,Size];
+            for (int i = 0; i < Size; i++)
+            {
+                Console.WriteLine();
+                for (int j = 0; j < Size; j++)
+                    if (grid[i, j] == 1)
+                    {
+                        Matrix[i, j] = Convert.ToInt32(buf[i][j]);
+                        Console.Write(buf[i][j]);
+                    }
+                    else
+                    {
+                        Console.Write("-");
+                    }
+
+            }
+            Console.WriteLine("");
+            Console.WriteLine("\nДешифрованная");
             for (int i = 0; i < Size; i++)
                 for (int j = 0; j < Size; j++)
                     if (grid[j, Size - i - 1] == 1)
                     {
                         Console.Write(buf[i][j]);
                     }
-            Console.WriteLine("");
             Console.ReadKey();
 
 
