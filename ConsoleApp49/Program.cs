@@ -89,13 +89,22 @@ namespace ConsoleApp49
 
             }
             Console.WriteLine("");
-            Console.WriteLine("\nДешифрованная");
+             Console.WriteLine("\nДешифрованная");
+            int[,] Matrix2 = new int[Size, Size];
             for (int i = 0; i < Size; i++)
+            {
+                Console.WriteLine();
                 for (int j = 0; j < Size; j++)
                     if (grid[j, Size - i - 1] == 1)
                     {
+                        Matrix2[i, j] = Convert.ToInt32(buf[i][j]);
                         Console.Write(buf[i][j]);
                     }
+                    else
+                    {
+                        Console.Write("-");
+                    }
+            }
             Console.ReadKey();
 
 
